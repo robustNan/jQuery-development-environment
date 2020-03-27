@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <!-- <a href="index.html">index</a> -->
+    <div class="container mt-4">
+      <h3>什么是JQDE？</h3>
+      <p class="font-weight-light text-muted text-break mt-4">
+        是一套基于Webpack搭建的jQuery项目开发环境(jQuery development environment)，使jQuery项目的开发能够与现今流行的前后端分离开发模式结合，这是一种有效提高开发效率的先进模式。<!--
+        -->利用此环境前端开发人员无需搭建后台环境，只需要配置相应的代理地址即可实现先后端的数据流通。并且此环境配置了对Sass和Stylus两种css样式预编译语言的配置，可以直接使用这些语言<!--
+        -->高效快速的编写界面样式。
+      </p>
+
+      <h3>开始使用</h3>
+      <p class="font-weight-light text-muted text-break mt-4">
+        对于多页面的jQuery项目，每个页面需要一个入口文件，入口文件的名称需要与页面名称严格对应，并且分别放置在src目录下的script和view目录中，这两个目录名称及位置不允许被改变。<!--
+        -->例如当前页面为view中的demo.html，对应的脚本入口文件为script中的demo.js，这是该页面的主入口文件。这样Webpack会将两个文件建立联系，而样式文件及其他脚本或库的引入都<!--
+        -->可以在主入口文件中通过import或者require引入。
+      </p>
+      <figure class="figure">
+        <img src="../static/img/src.png" class="figure-img img-fluid rounded" />
+      </figure>
+
+      <h3>配置代理</h3>
+    </div>
+
+    <!-- <div id="test"></div> -->
+
+    <div class="jumbotron jumbotron-fluid shadow-sm mt-4">
+      <div class="container">
+        <div class="card-deck mb-3 text-center">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">全球累计确诊</h4>
+            </div>
+            <div class="card-body" id="global">
+              <h1 class="card-title pricing-card-title">---- <small class="text-muted">/ 例</small></h1>
+              <p class="card-text">较昨日新增 <span>----</span></p>
+              <button type="button" class="btn btn-md btn-outline-primary">数据详情</button>
+            </div>
+          </div>
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">国外累计确诊</h4>
+            </div>
+            <div class="card-body" id="foreign">
+              <h1 class="card-title pricing-card-title">---- <small class="text-muted">/ 例</small></h1>
+              <p class="card-text">较昨日新增 <span>----</span></p>
+              <button type="button" class="btn btn-md btn-primary">数据详情</button>
+            </div>
+          </div>
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">国内累计确诊</h4>
+            </div>
+            <div class="card-body" id="demostic">
+              <h1 class="card-title pricing-card-title">---- <small class="text-muted">/ 例</small></h1>
+              <p class="card-text">较昨日新增 <span>----</span></p>
+              <button type="button" class="btn btn-md btn-primary">数据详情</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center">数据来源 <a class="font-weight-bold text-decoration-none" href="https://www.tianapi.com/" target="_bank">天行数据</a></p>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <p class="font-weight-light text-muted text-break mt-4">
+        上面的显示的信息是对于Webpack请求代理配置的自验和功能展示，千万不要以为是广告植入。这里去请求了一个第三方的接口地址，如果你目前是通过npm start启动的项目，<!--
+        -->那么这些数据是动态获取的，如果你是从dist中直接打开的本地页面，那么这些数据从有页面引入的json中获取。代理接口地址的修改在webpack.dev.js中可以看到proxy属性，请根据自己项目情况自行设定。
+      </p>
+      <img src="../static/img/proxy-set.png" class="rounded d-block" />
+
+      <h3 class="mt-4">全局引入jQuery、Lodash、Echarts</h3>
+      <p class="font-weight-light text-muted text-break mt-4">
+        在配置webpack时已将jQuery、Lodash、Echarts这三个常用库全局引入，各个模块中可直接调用。就像本页面在demo.js中将他们直接打印出来，但没有在文件顶部引入，你可以去控制台查看一下打印结果。
+      </p>
+      <figure class="figure">
+        <img src="../static/img/global-import.png" class="figure-img img-fluid rounded" />
+      </figure>
+
+      <h3 class="mt-4">图片的引入</h3>
+      <div class="card-deck text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <figure class="figure">
+              <img src="../static/img/bg-1.jpg" class="figure-img img-fluid rounded" />
+              <figcaption class="figure-caption">img标签src引入</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <figure class="figure">
+              <img class="figure-img img-fluid rounded" id="script-import" />
+              <figcaption class="figure-caption">script脚本import引入</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <figure class="figure">
+              <div class="rounded" id="css-bg">
+                <img src="../static/img/bg-1.jpg" class="figure-img img-fluid rounded" style="visibility: hidden;" />
+              </div>
+              <figcaption class="figure-caption">css样式background引入</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-4">字体图标的引入</h3>
+      <p class="font-weight-light text-muted text-break mt-4">只需在主入口文件或页面对应的css文件中引入相应的字体css文件即可，示例图标：<span class="iconfont icon-d"></span></p>
+      <p class="font-weight-light text-muted text-break">你还可以尝试<a class="text-decoration-none" href="https://icons.bootcss.com/">Bootstrap Icons</a></p>
+
+      <br />
+      <a class="btn btn-primary btn-middle" href="./index.html" role="button">Back to index</a>
+    </div>
+  </body>
+</html>
