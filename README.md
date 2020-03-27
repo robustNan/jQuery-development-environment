@@ -1,0 +1,2 @@
+# JQDE
+jQuery development environment
