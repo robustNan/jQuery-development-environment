@@ -1,22 +1,17 @@
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: 'source-map',
+  // devtool: 'source-map',
   /* externals: {
     jquery: {
       amd: 'jquery',
       commonjs: 'jquery',
       commonjs2: 'jquery',
       root: '$'
-    },
-    joint: {
-      amd: 'joint',
-      commonjs: 'joint',
-      commonjs2: 'joint',
-      root: 'joint'
     },
     lodash: {
       amd: 'lodash',
@@ -41,6 +36,12 @@ module.exports = merge(common, {
           test: /[\\/]node_modules[\\/]/,
           priority: -10
         }, */
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true
+        },
         default: {
           minChunks: 2, //最少被几个chunk引用
           priority: -20, //优先级，一个chunk很可能满足多个缓存组，会被抽取到优先级高的缓存组中
@@ -52,6 +53,34 @@ module.exports = merge(common, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    })
-  ]
+    }),
+    /* new MiniCssExtractPlugin({
+      filename: '[name].css'
+    }) */
+  ],
+  /* module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.s[ac]ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader', // Run postcss actions
+            options: {
+              plugins: function() {
+                // postcss plugins, can be exported to postcss.config.js
+                return [require('autoprefixer')];
+              }
+            }
+          },
+          'sass-loader'
+        ]
+      }
+    ]
+  } */
 });

@@ -1,40 +1,37 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
 const { getEntry, createHtmlWebpackPlugin } = require('./config/html-webpack-config');
 const entry = getEntry();
 
+// console.log(process.env.NODE_ENV)
 module.exports = {
-  /* entry: {
-    index: './src/script/index.js',
-    about: './src/script/about.js'
-  }, */
   entry: entry,
   output: {
-    filename: '[name].js',
+    filename: 'js/[name].js',
     path: path.resolve(__dirname, './dist')
   },
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        })
-      },
-      {
+      /* {
         test: /\.styl$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'stylus-loader']
         })
-      },
+      }, */
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: 'file-loader'
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'font'
+          }
+        }
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -43,41 +40,16 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              publicPath: './images/',
-              outputPath: 'images/'
+              // publicPath: './images/',
+              outputPath: 'img/'
             }
           }
         ]
-        // use: 'file-loader'
-        // use: ['url-loader?name=fonst/[name].[md5:hash:hex:7].[ext]']
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
-      },
-      {
-        test: /\.s[ac]ss$/,
-        use: [
-          {
-            loader: 'style-loader' // inject CSS to page
-          },
-          {
-            loader: 'css-loader' // translates CSS into CommonJS modules
-          },
-          {
-            loader: 'postcss-loader', // Run postcss actions
-            options: {
-              plugins: function() {
-                // postcss plugins, can be exported to postcss.config.js
-                return [require('autoprefixer')];
-              }
-            }
-          },
-          {
-            loader: 'sass-loader' // compiles Sass to CSS
-          }
-        ]
       },
       {
         test: /\.html$/,
@@ -129,15 +101,42 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+              hmr: true,
+              reloadAll: true
+            }
+          },
+          'css-loader',
+          {
+            loader: 'postcss-loader', // Run postcss actions
+            options: {
+              plugins: function() {
+                // postcss plugins, can be exported to postcss.config.js
+                return [require('autoprefixer')];
+              }
+            }
+          },
+          'sass-loader'
+        ]
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css'
+    }),
+    /* new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true
-    }),
+    }), */
     //全局引入jquery, lodash在此引入无效
     new webpack.ProvidePlugin({
       $: 'jquery',
