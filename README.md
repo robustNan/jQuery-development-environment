@@ -6,14 +6,20 @@
 
 **安装依赖**
 
-> \$ npm install
+```shell
+$ npm install
+```
 
 **启动环境**
 
-> \$ npm start
+```shell
+$ npm start
+```
 
 ![首页截图](https://github.com/robustNan/jQuery-development-environment/blob/master/static/index-page.png)
 
 **打包输出**
 
-> \$ npm run build
+```shell
+$ npm run build
+```
