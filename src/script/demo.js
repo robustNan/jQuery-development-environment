@@ -1,4 +1,6 @@
 import 'bootstrap';
+
+import 'bootstrap/scss/bootstrap.scss';
 import '../style/demo.sass';
 
 import displayState from './demoPage/display';
