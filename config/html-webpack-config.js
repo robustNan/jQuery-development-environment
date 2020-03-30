@@ -28,6 +28,7 @@ function getHtmlConfig(name) {
     chunks: [name],
     template: `./src/view/${name}.html`,
     filename: `${name}.html`,
+    favicon: './static/logo.png',
     hash: true,
     inject: 'body'
   };
