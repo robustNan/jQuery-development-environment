@@ -28,6 +28,7 @@ module.exports = merge(common, {
     rules: getStyleRules(true)
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env.API': JSON.stringify('../')
     }),
