@@ -2,9 +2,9 @@ const chalk = require('chalk'); //用来在命令行中输入不同颜色的文�
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
-const commonConfig = require('./webpack.common');
-const prodConfig = require('./webpack.prod');
-const getStyleRules = require('./config/style-file-loader-config');
+const commonConfig = require('./config/webpack.common');
+const prodConfig = require('./config/webpack.prod');
+const getStyleRules = require('./modules/style-file-loader-config');
 
 const NODE_ENV = process.env.NODE_ENV;
 const config = merge(commonConfig, prodConfig, {

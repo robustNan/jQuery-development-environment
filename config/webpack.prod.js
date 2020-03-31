@@ -1,10 +1,5 @@
-/* const common = require('./webpack.common');
-const merge = require('webpack-merge'); */
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackProgressOraPlugin = require('webpack-progress-ora-plugin');
-
-const getStyleRules = require('./config/style-file-loader-config');
 
 module.exports = {
   mode: 'production',
@@ -36,13 +31,7 @@ module.exports = {
       }
     }
   },
-  /* module: {
-    rules: getStyleRules(false)
-  }, */
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.API': JSON.stringify('./')
-    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[hash].css'
     }),
