@@ -1,0 +1,39 @@
+const merge = require('webpack-merge');
+const path = require('path');
+const webpackDevServer = require('webpack-dev-server');
+const webpack = require('webpack');
+
+const commonConfig = require('./webpack.common');
+const devConfig = require('./webpack.dev');
+const getStyleRules = require('./config/style-file-loader-config');
+
+const NODE_ENV = process.env.NODE_ENV;
+const config = merge(commonConfig, devConfig, {
+  module: {
+    rules: getStyleRules(NODE_ENV === 'development')
+  }
+});
+
+const devServerOptions = {
+  contentBase: path.join(__dirname, './dist'),
+  host: 'localhost',
+  hot: true,
+  open: true,
+  proxy: {
+    '/txapi': {
+      target: 'http://api.tianapi.com',
+      changeOrigin: true
+    }
+  },
+  overlay: {
+    errors: true // 编译出现错误时，错误直接贴到页面上
+  }
+};
+
+webpackDevServer.addDevServerEntrypoints(config, devServerOptions);
+const compiler = webpack(config);
+const server = new webpackDevServer(compiler, devServerOptions);
+
+server.listen(5000, 'localhost', () => {
+  console.log('dev server listening on port 5000');
+});

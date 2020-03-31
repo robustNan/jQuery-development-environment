@@ -1,13 +1,14 @@
-const common = require('./webpack.common');
-const merge = require('webpack-merge');
+/* const common = require('./webpack.common');
+const merge = require('webpack-merge'); */
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackProgressOraPlugin = require('webpack-progress-ora-plugin');
 
 const getStyleRules = require('./config/style-file-loader-config');
 
-module.exports = merge(common, {
+module.exports = {
   mode: 'production',
-  // devtool: 'source-map',
+  devtool: 'source-map',
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -35,15 +36,19 @@ module.exports = merge(common, {
       }
     }
   },
-  module: {
+  /* module: {
     rules: getStyleRules(false)
-  },
+  }, */
   plugins: [
     new webpack.DefinePlugin({
       'process.env.API': JSON.stringify('./')
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[hash].css'
+    }),
+    new WebpackProgressOraPlugin({
+      stderr_check: true,
+      interval: 300
     })
   ]
-});
+};

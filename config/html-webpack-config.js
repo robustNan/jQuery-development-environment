@@ -28,7 +28,7 @@ function getHtmlConfig(name) {
     chunks: [name],
     template: `./src/view/${name}.html`,
     filename: `${name}.html`,
-    favicon: './static/logo.png',
+    favicon: './static/logo.png', //该配置回导致在html同级目录下多出一个logo.png文件
     hash: true,
     inject: 'body'
   };
