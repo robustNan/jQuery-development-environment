@@ -3,9 +3,9 @@ const path = require('path');
 const webpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
-const commonConfig = require('./webpack.common');
-const devConfig = require('./webpack.dev');
-const getStyleRules = require('./config/style-file-loader-config');
+const commonConfig = require('./config/webpack.common');
+const devConfig = require('./config/webpack.dev');
+const getStyleRules = require('./modules/style-file-loader-config');
 
 const NODE_ENV = process.env.NODE_ENV;
 const config = merge(commonConfig, devConfig, {

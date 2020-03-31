@@ -2,14 +2,17 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-const { getEntry, createHtmlWebpackPlugin } = require('./config/html-webpack-config');
+const getDefinePlugin = require('../modules/create-define-plugin');
+const { getEntry, createHtmlWebpackPlugin } = require('../modules/html-webpack-config');
 const entry = getEntry();
+
+const DefinePlugin = process.env.NODE_ENV === 'development' ? getDefinePlugin(require('./dev.config')) : getDefinePlugin(require('./prod.config'));
 
 module.exports = {
   entry: entry,
   output: {
     filename: 'js/[name]-[hash].js',
-    path: path.resolve(__dirname, './dist')
+    path: path.resolve(__dirname, '../dist')
   },
   module: {
     rules: [
@@ -62,6 +65,7 @@ module.exports = {
       echarts: 'echarts',
       Popper: ['popper.js', 'default']
     }),
+    DefinePlugin,
     ...createHtmlWebpackPlugin(entry)
   ]
 };
