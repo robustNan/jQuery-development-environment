@@ -9,6 +9,8 @@ console.warn('全局引入jQuery', $);
 console.warn('全局引入Lodash', _);
 console.warn('全局引入Echarts', echarts);
 
+console.warn(`current 'API' value: '${API}'`);
+
 const $btn = $('.btn');
 $btn.on('click', function(e) {
   $btn.removeClass('btn-primary, btn-outline-primary').addClass('btn-primary');
