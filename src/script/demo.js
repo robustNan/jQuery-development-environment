@@ -26,8 +26,8 @@ if (process.env.NODE_ENV === 'development') {
     }
   });
 } else {
-const data = require('../static/data/data.json');
-displayState(data.newslist[0].desc);
+  const data = require('../static/data/data.json');
+  displayState(data.newslist[0].desc);
 }
 
 /* import引入图片 */
