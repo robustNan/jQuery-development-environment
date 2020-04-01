@@ -8,8 +8,13 @@
 
 **安装依赖**
 
+`* 推荐使用cnpm安装，避免npm安装导致部分依赖安装失败`
+
 ```shell
+$ cnpm install
+$ cnpm i
 $ npm install
+$ npm i
 ```
 
 **启动环境**
