@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /**
  * @cooper
- * @description 动态添加入口
+ * @description 根据/src/script下的js文件名称动态生成入口配置对象
  * @returns {Object}
  */
 function getEntry() {
@@ -21,6 +21,8 @@ function getEntry() {
 
 /**
  * @cooper
+ * @description 根据传入的入口文件名称返回HtmlWebpackPlugin所需配置对象
+ * @param {String} | name
  * @returns {Object}
  */
 function getHtmlConfig(name) {
@@ -36,12 +38,14 @@ function getHtmlConfig(name) {
 
 /**
  * @cooper
- * @returns {Object}
+ * @description 根据getEntry返回的入口配置对象分别创建HtmlWebpackPlugin
+ * @param {Object} | entries
+ * @returns {Array}
  */
-function createHtmlWebpackPlugin(list) {
+function createHtmlWebpackPlugin(entries) {
   const pluginArr = [];
-  for (const key in list) {
-    if (list.hasOwnProperty(key)) {
+  for (const key in entries) {
+    if (entries.hasOwnProperty(key)) {
       const configOptions = getHtmlConfig(key);
       pluginArr.push(new HtmlWebpackPlugin(configOptions));
     }

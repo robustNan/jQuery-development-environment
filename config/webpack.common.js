@@ -4,12 +4,13 @@ const webpack = require('webpack');
 
 const getDefinePlugin = require('../modules/create-define-plugin');
 const { getEntry, createHtmlWebpackPlugin } = require('../modules/html-webpack-config');
-const entry = getEntry();
+const entries = getEntry(); //获取到所有入口文件
 
+/* 根据 process.env.NODE_ENV 生成对应 DefinePlugin */
 const DefinePlugin = process.env.NODE_ENV === 'development' ? getDefinePlugin(require('./dev.config')) : getDefinePlugin(require('./prod.config'));
 
 module.exports = {
-  entry: entry,
+  entry: entries,
   output: {
     filename: 'js/[name]-[hash].js',
     path: path.resolve(__dirname, '../dist')
@@ -33,7 +34,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name]-[hash].[ext]',
-              outputPath: 'img/'
+              outputPath: 'img'
             }
           }
         ]
@@ -58,7 +59,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    /* 全局引入jquery, lodash在此引入无效 */
+    /* 全局引入jquery、lodash、echarts */
     new webpack.ProvidePlugin({
       $: 'jquery',
       _: 'lodash',
@@ -66,6 +67,6 @@ module.exports = {
       Popper: ['popper.js', 'default']
     }),
     DefinePlugin,
-    ...createHtmlWebpackPlugin(entry)
+    ...createHtmlWebpackPlugin(entries)
   ]
 };

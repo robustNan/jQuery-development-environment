@@ -1,36 +1,36 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = isHmr => {
+/**
+ * @author cooper
+ * @description 根据入参判定是否启用热重载
+ * @param {Boolean} | isOn
+ * @returns {Array}
+ */
+module.exports = isOn => {
+  const baseLoader = [
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        publicPath: '../',
+        hmr: isOn, //热重载相关
+        reloadAll: isOn //热重载相关
+      }
+    },
+    'css-loader'
+  ];
+
   return [
     {
       test: /\.styl$/,
-      use: [
-        {
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            publicPath: '../',
-            hmr: isHmr,
-            reloadAll: isHmr
-          }
-        },
-        'css-loader',
-        'stylus-loader'
-      ]
+      use: [...baseLoader, 'stylus-loader']
     },
     {
-      test: /\.(sa|sc|c)ss$/,
-      use: [
-        {
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            publicPath: '../',
-            hmr: isHmr,
-            reloadAll: isHmr
-          }
-        },
-        'css-loader',
-        'sass-loader'
-      ]
+      test: /\.(sa|sc)ss$/,
+      use: [...baseLoader, 'sass-loader']
+    },
+    {
+      test: /\.css$/,
+      use: [...baseLoader]
     }
   ];
 };
