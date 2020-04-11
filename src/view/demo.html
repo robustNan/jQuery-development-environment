@@ -131,6 +131,20 @@
         由于为了满足img标签通过src属性链接图片而采用了html-loader，目前不能实现Html文件变更的响应。
       </p>
 
+      <h3 class="mt-4">模拟Element的Select选择器</h3>
+      <p>
+        <div class="selector" id="years">
+          <input type="text" class="form-control" readonly />
+        </div>
+      </p>
+      <p class="font-weight-light text-muted text-break mt-4">
+        Select选择器基于jQuery和jQuery.niceScroll（存放在lib目录下）及Bootstrap编写，存放在plugin目录下，使用时先引入该插件后$('')选择元素调用.select方法，接收数据数组和回调两个参数。<!--
+        -->提供setData、setValue、setCallback和value四个接口，分别用来初始化后更新数据、设值、添加或修改回调、取值。select.sass文件顶部定义有颜色变量可修改。
+      </p>
+      <figure class="figure">
+        <img src="../static/img/import-select.png" class="figure-img img-fluid rounded" />
+      </figure>
+
       <br />
       <a class="btn btn-primary btn-middle" href="./index.html" role="button">Back to index</a>
     </div>

@@ -6,7 +6,7 @@ const webpack = require('webpack');
  * @param {Object} | options
  * @returns {webpack.DefinePlugin}
  */
-module.exports = options => {
+module.exports = (options) => {
   const obj = {};
   for (const key in options) {
     const value = options[key];

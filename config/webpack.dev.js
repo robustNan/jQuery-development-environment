@@ -7,7 +7,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
-    })
-  ]
+      filename: 'css/[name].css',
+    }),
+  ],
 };

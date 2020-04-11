@@ -1,0 +1,91 @@
+$bg-color: #fff //背景色
+$border-color: #dcdfe6 //边框颜色
+$font-color: #606266 //文字颜色
+$hover-color: #f5f7fa //下拉选项鼠标经过颜色
+$border-hover: #c0c4cc //Select框鼠标移入颜色
+$triangle-color: #c0c4cc //Select框箭头颜色
+
+.selector
+  cursor: default
+  display: inline-block
+  position: relative
+  height: 32px
+  width: 160px
+  vertical-align: top
+
+  .form-control[readonly]
+    cursor: default
+    font-size: 14px
+    padding: 5px 31px 5px 10px
+    background: $bg-color
+    border: 1px solid $border-color
+    border-radius: 2px
+    color: $font-color
+
+    &:hover
+      border-color: $border-hover
+
+    // &:focus
+    //   border-color: $border-focus
+
+  i.glyphicon-triangle-bottom
+    border: 5px solid $triangle-color
+    border-top: 5px solid transparent
+    border-left: 5px solid transparent
+    display: block
+    height: 10px
+    width: 10px
+    position: absolute
+    right: 10px
+    top: 50%
+    transform: translateY(-50%) rotate(45deg)
+    z-index: 100
+
+  ul.list-group
+    border-radius: 5px
+    display: none
+    margin: 0
+    max-height: 310px
+    padding: 6px 0
+    position: absolute
+    top: 45px
+    left: 0
+    z-index: 999
+    background: $bg-color
+    border: 1px solid $border-color
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    color: $font-color
+
+    li
+      height: 30px
+      line-height: 30px
+      padding: 0 10px
+      text-overflow: ellipsis
+      overflow: hidden
+      white-space: normal
+
+      &:hover
+        background-color: $hover-color
+
+  div.ipi-selector-arrow
+    border: 6px solid $bg-color
+    border-right: 6px solid transparent !important
+    border-bottom: 6px solid transparent !important
+    display: none
+    height: 10px
+    position: absolute
+    left: 30%
+    top: 40.5px
+    transform: rotate(45deg)
+    width: 10px
+    z-index: 1000
+
+    &::after
+      border: 1px solid $border-color
+      border-right: none !important
+      border-bottom: none !important
+      content: ''
+      display: block
+      height: 11px
+      width: 11px
+      transform: translate(-6px, -6px)

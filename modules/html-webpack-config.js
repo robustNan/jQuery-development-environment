@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 function getEntry() {
   const entry = {};
   const list = glob.sync('./src/script/*.js');
-  list.forEach(function(path) {
+  list.forEach(function (path) {
     const [flag, suffix] = ['script/', '.js'];
     const start = path.indexOf(flag) + flag.length;
     const end = path.length - suffix.length;
@@ -32,7 +32,7 @@ function getHtmlConfig(name) {
     filename: `${name}.html`,
     favicon: './static/logo.png', //该配置回导致在html同级目录下多出一个logo.png文件
     hash: true,
-    inject: 'body'
+    inject: 'body',
   };
 }
 

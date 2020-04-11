@@ -4,20 +4,20 @@ export default function displayState(data) {
       /* 全球确诊 */
       id: 'global',
       count: data.globalStatistics.confirmedCount,
-      add: data.globalStatistics.confirmedIncr
+      add: data.globalStatistics.confirmedIncr,
     },
     {
       /* 国外确诊 */
       id: 'foreign',
       count: data.foreignStatistics.confirmedCount,
-      add: data.foreignStatistics.confirmedIncr
+      add: data.foreignStatistics.confirmedIncr,
     },
     {
       /* 国内确诊 */
       id: 'demostic',
       count: data.confirmedCount,
-      add: data.confirmedIncr
-    }
+      add: data.confirmedIncr,
+    },
   ];
 
   for (const iterator of currentData) {

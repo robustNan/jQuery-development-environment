@@ -10,8 +10,8 @@ const getStyleRules = require('./modules/style-file-loader-config');
 const NODE_ENV = process.env.NODE_ENV;
 const config = merge(commonConfig, devConfig, {
   module: {
-    rules: getStyleRules(NODE_ENV === 'development')
-  }
+    rules: getStyleRules(NODE_ENV === 'development'),
+  },
 });
 
 const devServerOptions = {
@@ -22,12 +22,12 @@ const devServerOptions = {
   proxy: {
     '/txapi': {
       target: 'http://api.tianapi.com',
-      changeOrigin: true
-    }
+      changeOrigin: true,
+    },
   },
   overlay: {
-    errors: true // 编译出现错误时，错误直接贴到页面上
-  }
+    errors: true, // 编译出现错误时，错误直接贴到页面上
+  },
 };
 
 webpackDevServer.addDevServerEntrypoints(config, devServerOptions);

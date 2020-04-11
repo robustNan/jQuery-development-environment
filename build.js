@@ -9,8 +9,8 @@ const getStyleRules = require('./modules/style-file-loader-config');
 const NODE_ENV = process.env.NODE_ENV;
 const config = merge(commonConfig, prodConfig, {
   module: {
-    rules: getStyleRules(NODE_ENV === 'development')
-  }
+    rules: getStyleRules(NODE_ENV === 'development'),
+  },
 });
 
 webpack(config, (err, stats) => {
@@ -39,7 +39,7 @@ webpack(config, (err, stats) => {
       modules: false, // 不增加内置模块信息
       children: false, // 不增加子级信息
       chunks: false, // 允许较少的输出
-      chunkModules: false // 不将内置模块的信息加到包信息
+      chunkModules: false, // 不将内置模块的信息加到包信息
     }) + '\n\n'
   );
 

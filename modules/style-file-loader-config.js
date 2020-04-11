@@ -42,7 +42,7 @@ module.exports = (isOn) => {
     },
     {
       test: /\.css$/,
-      use: [...baseLoader],
+      use: baseLoader,
     },
   ];
 };

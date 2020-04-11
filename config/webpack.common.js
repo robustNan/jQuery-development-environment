@@ -13,7 +13,7 @@ module.exports = {
   entry: entries,
   output: {
     filename: 'js/[name]-[hash].js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist'),
   },
   module: {
     rules: [
@@ -23,9 +23,9 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name]-[hash].[ext]',
-            outputPath: 'font'
-          }
-        }
+            outputPath: 'font',
+          },
+        },
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -34,15 +34,15 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name]-[hash].[ext]',
-              outputPath: 'img'
-            }
-          }
-        ]
+              outputPath: 'img',
+            },
+          },
+        ],
       },
       {
         test: /\.js$/,
         exclude: /[\\/]node_modules[\\/]/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.html$/,
@@ -50,23 +50,25 @@ module.exports = {
           {
             loader: 'html-loader',
             options: {
-              attributes: true
-            }
-          }
-        ]
-      }
-    ]
+              attributes: true,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     /* 全局引入jquery、lodash、echarts */
     new webpack.ProvidePlugin({
       $: 'jquery',
+      jQuery: 'jquery',
+      jquery: 'jquery',
       _: 'lodash',
       echarts: 'echarts',
-      Popper: ['popper.js', 'default']
+      Popper: ['popper.js', 'default'],
     }),
     DefinePlugin,
-    ...createHtmlWebpackPlugin(entries)
-  ]
+    ...createHtmlWebpackPlugin(entries),
+  ],
 };
