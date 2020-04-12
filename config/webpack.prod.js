@@ -3,7 +3,7 @@ const WebpackProgressOraPlugin = require('webpack-progress-ora-plugin');
 
 module.exports = {
   mode: 'production',
-  devtool: 'hidden-source-map', //source-map
+  devtool: 'source-map', //source-map
   optimization: {
     splitChunks: {
       chunks: 'all',

@@ -4,7 +4,9 @@ import '../../style/select.sass';
 $.fn.extend({
   select: function (data, callback) {
     const _this = this;
-    const $input = _this.children('input[type="text"]');
+    const $input = _this.children('input');
+    /* webpack打包好的代码中回自动去掉 type="text" */
+    // const $input = _this.children('input[type="text"]');
     const $glyphicon = $('<i class="glyphicon-triangle-bottom"></i>');
     const $ul = $('<ul class="list-group" style="width:' + _this.get(0).offsetWidth + 'px"></ul>');
     const $arrow = $('<div class="ipi-selector-arrow"></div>');
