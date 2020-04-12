@@ -1,3 +1,4 @@
+const fs = require('fs');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -14,7 +15,7 @@ function getEntry() {
     const start = path.indexOf(flag) + flag.length;
     const end = path.length - suffix.length;
     const name = path.slice(start, end);
-    entry[name] = path;
+    if (fs.existsSync(`./src/view/${name}.html`)) entry[name] = path; //判定入口文件是否存在对应的html
   });
   return entry;
 }
