@@ -1,5 +1,5 @@
 import '../../lib/jquery.nicescroll';
-import '../../style/select.sass';
+import './select.sass';
 
 $.fn.extend({
   select: function (data, callback) {
@@ -9,7 +9,7 @@ $.fn.extend({
     // const $input = _this.children('input[type="text"]');
     const $glyphicon = $('<i class="glyphicon-triangle-bottom"></i>');
     const $ul = $('<ul class="list-group" style="width:' + _this.get(0).offsetWidth + 'px"></ul>');
-    const $arrow = $('<div class="ipi-selector-arrow"></div>');
+    const $arrow = $('<div class="select-arrow"></div>');
 
     let _data = null;
     let _callback = callback;
