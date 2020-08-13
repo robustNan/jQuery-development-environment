@@ -37,7 +37,6 @@ webpackDevServer.addDevServerEntrypoints(config, devServerOptions);
 const compiler = webpack(config);
 const server = new webpackDevServer(compiler, devServerOptions);
 
-/* 在这里配置端口号 */
 server.listen(process.env.PORT, 'localhost', () => {
   console.log('dev server listening on port 5000');
 });
