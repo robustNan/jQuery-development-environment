@@ -3,7 +3,7 @@ import 'bootstrap';
 import 'bootstrap/scss/bootstrap.scss';
 import '../style/demo.sass';
 
-import './plugin/select'; //引入select插件
+import '../plugin/select'; //引入select插件
 import displayState from './demoPage/display';
 
 console.warn('全局引入jQuery', $);
