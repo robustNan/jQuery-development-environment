@@ -7,6 +7,9 @@ const commonConfig = require('./config/webpack.common');
 const devConfig = require('./config/webpack.dev');
 const getStyleRules = require('./modules/style-file-loader-config');
 
+const dotenv = require('dotenv');
+dotenv.config('./env');
+
 const NODE_ENV = process.env.NODE_ENV;
 const config = merge(commonConfig, devConfig, {
   module: {
@@ -16,7 +19,7 @@ const config = merge(commonConfig, devConfig, {
 
 const devServerOptions = {
   contentBase: path.join(__dirname, './dist'),
-  host: 'localhost',
+  host: process.env.HOST,
   hot: true,
   open: true,
   proxy: {
@@ -35,6 +38,6 @@ const compiler = webpack(config);
 const server = new webpackDevServer(compiler, devServerOptions);
 
 /* 在这里配置端口号 */
-server.listen(5050, 'localhost', () => {
+server.listen(process.env.PORT, 'localhost', () => {
   console.log('dev server listening on port 5000');
 });
