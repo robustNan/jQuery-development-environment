@@ -1,10 +1,43 @@
 import date from './date';
 import './picker.sass';
 
+/* 引入bootstrap svg图标 */
+import left from './icons/chevron-left.svg';
+import right from './icons/chevron-right.svg';
+import doubleLeft from './icons/chevron-double-left.svg';
+import doubleRight from './icons/chevron-double-right.svg';
+
 // console.log(date.daysInMonth(2020, 2));
 const symbolName = 'date-picker-symbol'; //用来处理datepicker区域外点击的隐藏选框的class标记
 const body = document.body;
 const bodyOverfloow = body.style.overflow; //缓存body原始的overflow属性,选框隐藏后回复body
+
+const monthZh = [
+  '一月',
+  '二月',
+  '三月',
+  '四月',
+  '五月',
+  '六月',
+  '七月',
+  '八月',
+  '九月',
+  '十一月',
+  '十二月',
+];
+const monthEn = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'November',
+  'December',
+];
 
 $.fn.extend({
   datePicker(option) {
@@ -64,8 +97,17 @@ $.fn.extend({
     _this.dialog = $('.date-picker-dialog');
     if (!_this.dialog.length) {
       _this.dialog = $(
-        `<div class="date-picker-dialog ${symbolName}" style="height:${_this.dialog_h}px;width:${_this.dialog_w}px;"></div>`
+        `<div class="${symbolName} date-picker-dialog" style="height:${_this.dialog_h}px;width:${_this.dialog_w}px;">
+          <div class="${symbolName} date-cutover">
+            <img class="${symbolName} cutover double-left" src="${doubleLeft}">
+            <img class="${symbolName} cutover left" src="${left}">
+            <p class="${symbolName}"><span class="${symbolName} cutover-year">2011年</span><span class="${symbolName} cutover-month">1月</span></p>
+            <img class="${symbolName} cutover right" src="${right}">
+            <img class="${symbolName} cutover double-right" src="${doubleRight}">
+          </div>
+        </div>`
       );
+      // _this.dialog.append(`<img src="${left}">`);
       $('body').append(_this.dialog);
     }
 
