@@ -9,7 +9,7 @@ $triangle-color: #c0c4cc //Select框箭头颜色
   cursor: default
   display: inline-block
   position: relative
-  height: 32px
+  // height: 32px
   width: 160px
   vertical-align: top
 
@@ -28,17 +28,25 @@ $triangle-color: #c0c4cc //Select框箭头颜色
     // &:focus
     //   border-color: $border-focus
 
-  i.glyphicon-triangle-bottom
-    border: 5px solid $triangle-color
-    border-top: 5px solid transparent
-    border-left: 5px solid transparent
+  /** i.glyphicon-triangle-bottom
+   border: 5px solid $triangle-color
+   border-top: 5px solid transparent
+   border-left: 5px solid transparent
+   display: block
+   height: 10px
+   width: 10px
+   position: absolute
+   right: 10px
+   top: 50%
+   transform: translateY(-50%) rotate(45deg)
+   z-index: 100 **/
+
+  .glyphicon-triangle-bottom
     display: block
-    height: 10px
-    width: 10px
     position: absolute
     right: 10px
     top: 50%
-    transform: translateY(-50%) rotate(45deg)
+    transform: translateY(-50%) rotate(0)
     z-index: 100
 
   ul.list-group
