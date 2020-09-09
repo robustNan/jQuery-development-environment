@@ -1,11 +1,11 @@
 import 'bootstrap';
 import 'bootstrap/scss/bootstrap.scss';
 
-import '../plugin/date-picker';
+// import '../plugin/date-picker';
 
 import '../style/stylus.styl';
 
-$(function () {
+/* $(function () {
   $('#date').datePicker({ isEn: true });
   $('#date-range').datePicker({
     default: {
@@ -14,4 +14,4 @@ $(function () {
     },
     range: true,
   });
-});
+}); */

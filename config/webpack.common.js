@@ -3,11 +3,17 @@ const path = require('path');
 const webpack = require('webpack');
 
 const getDefinePlugin = require('../modules/create-define-plugin');
-const { getEntry, createHtmlWebpackPlugin } = require('../modules/html-webpack-config');
+const {
+  getEntry,
+  createHtmlWebpackPlugin,
+} = require('../modules/html-webpack-config');
 const entries = getEntry(); //获取到所有入口文件
 
 /* 根据 process.env.NODE_ENV 生成对应 DefinePlugin */
-const DefinePlugin = process.env.NODE_ENV === 'development' ? getDefinePlugin(require('./dev.config')) : getDefinePlugin(require('./prod.config'));
+const DefinePlugin =
+  process.env.NODE_ENV === 'development'
+    ? getDefinePlugin(require('./dev.config'))
+    : getDefinePlugin(require('./prod.config'));
 
 module.exports = {
   entry: entries,
@@ -66,6 +72,7 @@ module.exports = {
       jquery: 'jquery',
       _: 'lodash',
       echarts: 'echarts',
+      moment: 'moment',
       Popper: ['popper.js', 'default'],
     }),
     DefinePlugin,
