@@ -7,11 +7,14 @@ import '../style/demo.sass';
 import 'daterangepicker/daterangepicker.js';
 import 'daterangepicker/daterangepicker.css';
 
-import '../plugin/select'; //引入select插件
+import '../plugin/el-select'; //引入select插件
 import displayState from './demoPage/display';
 
 /* import引入图片 */
 import bg from '../static/img/bg-1.jpg';
+
+import dateM from '../plugin/date-manager';
+import Arithmetic from '../plugin/arithmetic';
 
 /**
  * @description 日期范围选择插件配置
@@ -73,31 +76,16 @@ $(function () {
 
   document.querySelector('#script-import').src = bg;
 
-  const years = $('#years').select(
-    [{ value: '2019', text: '2019年' }],
+  const years = $('#years').elSelect(
+    [{ value: '2019', text: '2019年' }], //初始设置的数据
     (value, text) => {
       alert(
         `value: ${value}, text: ${text}\n提示：调用setValue方法也会设置value也会触发回调`
       );
     }
   );
-  years.setData([
-    { value: '2019', text: '2019年' },
-    { value: '2018', text: '2018年' },
-    { value: '2017', text: '2017年' },
-    { value: '2016', text: '2016年' },
-    { value: '2015', text: '2015年' },
-    { value: '2014', text: '2014年' },
-    { value: '2013', text: '2013年' },
-    { value: '2012', text: '2012年' },
-    { value: '2011', text: '2011年' },
-    { value: '2010', text: '2010年' },
-    { value: '2009', text: '2009年' },
-    { value: '2008', text: '2008年' },
-    { value: '2007', text: '2007年' },
-    { value: '2006', text: '2006年' },
-  ]);
-  // years.setValue('2019')
+  years.setData(dateM.nearlyYears()); //再次设置可选择数据
+  // years.setValue('2015'); //设置指定值
 
   console.log($('#date-range').daterangepicker);
 
@@ -137,4 +125,11 @@ $(function () {
       );
     }
   );
+
+  const arith = new Arithmetic(); //初始化计算对象
+  $('#calc').on('click', () => {
+    const expression = $('#calc-input').val();
+    const result = arith.calculate(expression); //传入表达式开始计算
+    alert(result);
+  });
 });

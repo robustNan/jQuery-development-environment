@@ -4,7 +4,7 @@ import './select.sass';
 const down = require('./chevron-down.svg');
 console.log(down);
 $.fn.extend({
-  select: function (data, callback) {
+  elSelect: function (data, callback) {
     const _this = this;
     const $input = _this.children('input');
     /* webpack打包好的代码中回自动去掉 type="text" */
