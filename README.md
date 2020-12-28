@@ -30,3 +30,8 @@ $ npm start
 ```shell
 $ npm run build
 ```
+
+**node-sass升级**
+
+`* 本项目针对node13版本开发，如果使用的node版本不同，需要替换对应版本的node-sass`
+https://www.npmjs.com/package/node-sass
