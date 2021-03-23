@@ -105,3 +105,4 @@ dist
 
 # Vscode config file
 .vscode
+/package-lock.json
