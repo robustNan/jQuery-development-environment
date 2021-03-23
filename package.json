@@ -32,7 +32,7 @@
     "html-webpack-plugin": "^4.0.1",
     "mini-css-extract-plugin": "^0.9.0",
     "mkdirp": "^1.0.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
     "single-line-log": "^1.1.2",
@@ -41,7 +41,7 @@
     "true-case-path": "^2.2.1",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
+    "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^4.2.2",
     "webpack-progress-ora-plugin": "^1.2.2"
   },
@@ -51,8 +51,8 @@
     "core-js": "^3.6.4",
     "daterangepicker": "^3.1.0",
     "echarts": "^4.7.0",
-    "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
     "moment": "^2.27.0",
     "popper.js": "^1.16.1"
   }
